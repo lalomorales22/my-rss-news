@@ -1,0 +1,423 @@
+Documentation
+API Reference
+
+lalo adrian morales
+Overview
+Introduction
+Authentication
+Making requests
+Streaming
+Endpoints
+API Keys
+Chat completions
+Completions
+Create embeddings
+List embedding models
+Get embedding model
+List language models
+Get language model
+List models
+Get model
+Integrations
+OpenAI SDK
+Anthropic SDK
+#REST API
+The xAI Enterprise API is a robust, high-performance RESTful interface designed for seamless integration into existing systems. It offers advanced AI capabilities with full compatibility with the OpenAI REST API.
+
+#API Key
+/v1/api-key
+
+Get information about an API key, including name, status, permissions and users who created or modified this key.
+
+Definition
+Example
+GET
+
+/v1/api-key
+
+
+No parameters.
+200
+
+Response
+
+
+{
+  "acls": [],
+  "api_key_blocked": false,
+  "api_key_disabled": false,
+  "api_key_id": "",
+  "create_time": "",
+  "modified_by": "",
+  "modify_time": "",
+  "name": "",
+  "redacted_api_key": "",
+  "team_blocked": false,
+  "team_id": "",
+  "user_id": ""
+}
+200
+400
+#Chat Completions
+/v1/chat/completions
+
+Create a language model response for a given chat conversation. This endpoint is compatible with the OpenAI API.
+
+Request body
+Search
+messages
+
+array
+
+Required
+
+A list of messages that make up the the chat conversation. Different models support different message types, such as image and text.
+
+model
+
+string
+
+Required
+
+Model name for the model to use.
+
+Show optional fields
+Definition
+Example
+POST
+
+/v1/chat/completions
+
+
+{
+  "frequency_penalty": 0,
+  "logit_bias": {},
+  "logprobs": false,
+  "max_tokens": 0,
+  "messages": [],
+  "model": "",
+  "n": 0,
+  "presence_penalty": 0,
+  "response_format": null,
+  "seed": 0,
+  "stop": [],
+  "stream": false,
+  "stream_options": null,
+  "temperature": 0,
+  "tool_choice": null,
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0,
+  "user": ""
+}
+200
+
+Response
+
+
+{
+  "choices": [],
+  "created": 0,
+  "id": "",
+  "model": "",
+  "object": "",
+  "system_fingerprint": "",
+  "usage": null
+}
+200
+400
+#Completions
+/v1/completions
+
+Create a language model response for a given prompt. This endpoint is compatible with the OpenAI API.
+
+Request body
+Search
+model
+
+string
+
+Required
+
+Specifies the model to be used for the request.
+
+prompt
+
+unknown
+
+Required
+
+Show optional fields
+Definition
+Example
+POST
+
+/v1/completions
+
+
+{
+  "best_of": 0,
+  "echo": false,
+  "frequency_penalty": 0,
+  "logit_bias": {},
+  "logprobs": false,
+  "max_tokens": 0,
+  "model": "",
+  "n": 0,
+  "presence_penalty": 0,
+  "prompt": null,
+  "seed": 0,
+  "stop": [],
+  "stream": false,
+  "stream_options": null,
+  "suffix": "",
+  "temperature": 0,
+  "top_p": 0,
+  "user": ""
+}
+200
+
+Response
+
+
+{
+  "choices": [],
+  "created": 0,
+  "id": "",
+  "model": "",
+  "object": "",
+  "system_fingerprint": "",
+  "usage": null
+}
+200
+400
+#Create embeddings
+/v1/embeddings
+
+Create an embedding vector representation corresponding to the input text. This endpoint is compatible with the OpenAI API.
+
+Request body
+Search
+input
+
+unknown
+
+Required
+
+model
+
+string
+
+Required
+
+ID of the model to use.
+
+Show optional fields
+Definition
+Example
+POST
+
+/v1/embeddings
+
+
+{
+  "dimensions": 0,
+  "encoding_format": "",
+  "input": null,
+  "model": "",
+  "user": ""
+}
+200
+
+Response
+
+
+{
+  "data": [],
+  "model": "",
+  "object": "",
+  "usage": null
+}
+200
+400
+#List embedding models
+/v1/embedding-models
+
+List all embedding models available for an API key.
+
+Definition
+Example
+GET
+
+/v1/embedding-models
+
+
+No parameters.
+200
+
+Response
+
+
+{
+  "models": []
+}
+200
+400
+#Get embedding model
+/v1/embedding-models/{model_id}
+
+Embedding model retrieval with full information.
+
+Path parameters
+model_id
+
+string
+
+ID of the model to get.
+
+Definition
+Example
+GET
+
+/v1/embedding-models/{model_id}
+
+
+No parameters.
+200
+
+Response
+
+
+{
+  "created": 0,
+  "id": "",
+  "input_modalities": [],
+  "object": "",
+  "owned_by": "",
+  "prompt_image_token_price": 0,
+  "prompt_text_token_price": 0,
+  "version": ""
+}
+200
+400
+404
+#List language models
+/v1/language-models
+
+List all language models available.
+
+Definition
+Example
+GET
+
+/v1/language-models
+
+
+No parameters.
+200
+
+Response
+
+
+{
+  "models": []
+}
+200
+400
+#Get language model
+/v1/language-models/{model_id}
+
+Get information about an embedding model using its ID.
+
+Path parameters
+model_id
+
+string
+
+ID of the model to get.
+
+Definition
+Example
+GET
+
+/v1/language-models/{model_id}
+
+
+No parameters.
+200
+
+Response
+
+
+{
+  "completion_text_token_price": 0,
+  "created": 0,
+  "id": "",
+  "input_modalities": [],
+  "object": "",
+  "output_modalities": [],
+  "owned_by": "",
+  "prompt_image_token_price": 0,
+  "prompt_text_token_price": 0,
+  "version": ""
+}
+200
+400
+404
+#List models
+/v1/models
+
+OpenAI compatible version of model listing with reduced information. This endpoint is compatible with the OpenAI API.
+
+Definition
+Example
+GET
+
+/v1/models
+
+
+No parameters.
+200
+
+Response
+
+
+{
+  "models": []
+}
+200
+400
+#Get model
+/v1/models/{model_id}
+
+List all language and embedding models available. This endpoint is compatible with the OpenAI API.
+
+Path parameters
+model_id
+
+string
+
+ID of the model to get.
+
+Definition
+Example
+GET
+
+/v1/models/{model_id}
+
+
+No parameters.
+200
+
+Response
+
+
+{
+  "created": 0,
+  "id": "",
+  "object": "",
+  "owned_by": ""
+}
+200
+400
+404
