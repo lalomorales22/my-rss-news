@@ -1,9 +1,9 @@
 # RSS News Aggregator
-<img width="1206" alt="Screenshot 2024-12-15 at 12 01 44 AM" src="https://github.com/user-attachments/assets/fbf59728-0234-42c3-a76a-7b299ab63c56" />
+
 
 A modern RSS feed reader that allows you to aggregate, filter, and share news from multiple sources. Built with React, TypeScript, and Supabase.
 
-![App Screenshot Placeholder]
+<img width="1206" alt="Screenshot 2024-12-15 at 12 01 44 AM" src="https://github.com/user-attachments/assets/fbf59728-0234-42c3-a76a-7b299ab63c56" />
 
 ## Features
 
